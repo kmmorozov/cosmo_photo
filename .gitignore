@@ -1,0 +1,9 @@
+env/
+.vscode/
+.idea/
+/.replit
+.env 
+/images   
+/venv
+/.idea
+__pycache__
