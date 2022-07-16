@@ -9,7 +9,7 @@ from time import sleep
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--freq", default=14400)
-    parser.add_argument("--dir", default='./images')
+    parser.add_argument("--dir", default='images')
     freq = parser.parse_args().freq
     directory = parser.parse_args().dir
     return freq, directory
