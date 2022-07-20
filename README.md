@@ -9,7 +9,7 @@
   fetch_epic_photo.py ```
 - Скрипт однократной публикации фото в телеграм канале ```one_photo_telegram_sender.py```.
 - Скрипт периодической публикации фото в телеграм канале ```telegram_sender.py```.
-- Дополнительный скрипт для записи файлов write_file.py
+- Дополнительный скрипт для записи файлов ```write_file.py```
 
 ### Как это работает:
 
@@ -65,7 +65,7 @@ pip install -r requirements.txt
 
 - `NASA_TOKEN` - секретный ключ ([ссылка](https://api.nasa.gov)).
 - `TELEGRAM_TOKEN` - секретный ключ телеграм бота.
-- `SPACE_CHAT_ID` - chat_id вашего телеграм канала.
+- `TELEGRAM_CHAT_ID` - chat_id вашего телеграм канала.
 
 #### Инструкция telegram:
 
@@ -101,14 +101,15 @@ python3 fetch_epic_photo.py
 Для публикации фото в телеграм канал с помощью бота используются следующие команды:
 
 ```bash
-python3 sending_one_foto_bot.py
+python3 one_photo_telegram_sender.py
 ```
 
+
 ```bash
-python3 sending_endlessly_foto_bot.py --freq=3600 --dir=/home/user1/photo
+python3 telegram_sender.py --freq=3600 --dir=/home/user1/photo
 ``` 
 
-где `3600`  - это промежуток времени между публикациями, a `/home/user1/photo` - путь до папки с фотографиями.
+где `3600`  - это промежуток времени между публикациями, a `/home/user1/photo` - путь до папки с фотографиями. 
 
 После запуска любого из скриптов отправки в канал телеграм должны будут отправиться фотографии.
 
