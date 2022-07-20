@@ -79,20 +79,36 @@ pip install -r requirements.txt
 
 Для запуска скачивания фото используются следующие команды:
 
-- ```python3 fetch_spacex_images.py --launch_number=number```, где ` number` - это номер запуска.
-- ```python3 fetch_apod_images.py --image_count=photo_count```, где `photo_count` - это количество фотографий для
-  скачивания.
-- ```python3 fetch_epic_photo.py```
+```bash
+python3 fetch_spacex_images.py --launch_number=16
+```
+
+где ` 16` - это номер запуска.
+
+```bash
+python3 fetch_apod_images.py --image_count=23
+```
+
+где `23` - это количество фотографий для скачивания.
+
+```bash
+python3 fetch_epic_photo.py
+```
 
 После запуска любого из скриптов скачивания, появится папка ```images```, в ней появятся подпапка с именем
 соответствующего сервиса ```apod_images, epic_images, spacex_images``` , в которой будут фотографии.
 
 Для публикации фото в телеграм канал с помощью бота используются следующие команды:
 
-- ```python3 sending_one_foto_bot.py ```.
-- ```python3 sending_endlessly_foto_bot.py --freq=interval --dir=path_to_images``` , где `interval`  - это промежуток
-  времени
-  между публикациями, a `path_to_images` - путь до папки с фотографиями.
+```bash
+python3 sending_one_foto_bot.py
+```
+
+```bash
+python3 sending_endlessly_foto_bot.py --freq=3600 --dir=/home/user1/photo
+``` 
+
+где `3600`  - это промежуток времени между публикациями, a `/home/user1/photo` - путь до папки с фотографиями.
 
 После запуска любого из скриптов отправки в канал телеграм должны будут отправиться фотографии.
 
