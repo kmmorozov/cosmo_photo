@@ -2,20 +2,16 @@ import urllib.parse
 import requests
 import urllib.parse
 import os
-from write_file import write_file
+from additional_func import fetch_images
+from pathlib import Path
 
 
 def fetch_epic_photo(links, directory_name):
     for link in links:
         file_url_path = urllib.parse.urlparse(link).path
         _, file_name = os.path.split(file_url_path)
-        try:
-            response = requests.get(link)
-            response.raise_for_status()
-            content = response.content
-        except(requests.HTTPError, requests.ConnectionError):
-            quit('Не удалось получить данные с сервера')
-        write_file(directory_name, file_name, content)
+        file_save_pass = Path(directory_name, file_name)
+        fetch_images(link, file_save_pass)
 
 
 def get_epic_photo_links(url, headers, payload):
@@ -36,7 +32,7 @@ if __name__ == '__main__':
     url = "https://epic.gsfc.nasa.gov/api/natural"
     payload = {}
     headers = {}
-    directory_name = 'images/epic_images'
+    directory_name = Path('images', 'epic_images')
     os.makedirs(directory_name, exist_ok=True)
     try:
         links = get_epic_photo_links(url, headers, payload)

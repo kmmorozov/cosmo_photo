@@ -1,15 +1,14 @@
-import telegram
 import os
 import random
 from dotenv import load_dotenv
 import argparse
+from additional_func import send_photo_to_channel
 
 
-def get_args():
+def get_cli_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dir", default='images')
-    directory = parser.parse_args().dir
-    return directory
+    return parser.parse_args()
 
 
 def get_file_paths_from_directory(directory):
@@ -21,20 +20,14 @@ def get_file_paths_from_directory(directory):
     return all_file_paths
 
 
-def send_photo_to_channel(token, chat_id, file_paths):
-    bot = telegram.Bot(token=token)
-    random.shuffle(file_paths)
-    with open(file_paths[0], 'rb') as file:
-        bot.send_document(chat_id=chat_id, document=file)
-
-
 if __name__ == '__main__':
     load_dotenv()
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
-    directory = get_args()
+    directory = get_cli_args().dir
     file_paths = get_file_paths_from_directory(directory)
     try:
-        send_photo_to_channel(token, chat_id, file_paths)
+        random.shuffle(file_paths)
+        send_photo_to_channel(token, chat_id, file_paths[0])
     except (telegram.error.NetworkError, telegram.error.InvalidToken):
         print('Ошибка отправки сообщения')
