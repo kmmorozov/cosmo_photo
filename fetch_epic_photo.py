@@ -1,7 +1,4 @@
-import urllib.parse
 import requests
-import urllib.parse
-import os
 from additional_func import fetch_images
 from additional_func import create_file_path
 from pathlib import Path
@@ -32,7 +29,7 @@ if __name__ == '__main__':
     payload = {}
     headers = {}
     directory_name = Path('images', 'epic_images')
-    os.makedirs(directory_name, exist_ok=True)
+    Path(directory_name).mkdir(exist_ok=True)
     try:
         links = get_epic_photo_links(url, headers, payload)
         fetch_epic_photo(links, directory_name)

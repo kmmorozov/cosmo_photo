@@ -1,5 +1,4 @@
 import requests
-import os
 import argparse
 from additional_func import fetch_images
 from additional_func import create_file_path
@@ -28,7 +27,7 @@ if __name__ == '__main__':
     payload = {'filter': 'links,flickr_images'}
     headers = {}
     dir_name = Path('images', 'spacex_images')
-    os.makedirs(dir_name, exist_ok=True)
+    Path(dir_name).mkdir(exist_ok=True)
     try:
         fetch_spacex_last_launch(dir_name)
     except(requests.HTTPError, requests.ConnectionError):
