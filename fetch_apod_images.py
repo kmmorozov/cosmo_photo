@@ -1,9 +1,9 @@
 import requests
-import urllib
 import os
 import argparse
 import dotenv
 from additional_func import fetch_images
+from additional_func import create_file_path
 from pathlib import Path
 
 
@@ -19,9 +19,7 @@ def fetch_apod_images(dir_name, payload, url):
     for json_element in response.json():
         try:
             apod_image_link = json_element['hdurl']
-            file_path = urllib.parse.urlparse(apod_image_link).path
-            _, file_name = os.path.split(file_path)
-            file_save_path = Path(dir_name, file_name)
+            file_save_path = create_file_path(apod_image_link, dir_name)
             fetch_images(apod_image_link, file_save_path)
         except KeyError:
             pass

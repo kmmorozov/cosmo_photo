@@ -1,9 +1,8 @@
 import requests
-import urllib
 import os
 import argparse
 from additional_func import fetch_images
-from datetime import datetime
+from additional_func import create_file_path
 from pathlib import Path
 
 
@@ -18,12 +17,8 @@ def fetch_spacex_last_launch(dir_name):
     response.raise_for_status()
     photo_links = response.json()['links']['flickr_images']
     for spaceX_image_link in photo_links:
-        file_path = urllib.parse.urlparse(spaceX_image_link).path
-        time_stamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        _, file_name = os.path.split(file_path)
-        file_name = f'{time_stamp}{file_name}'
-        file_save_pass = Path(dir_name, file_name)
-        fetch_images(spaceX_image_link, file_save_pass)
+        file_save_path = create_file_path(spaceX_image_link, dir_name)
+        fetch_images(spaceX_image_link, file_save_path)
     return True
 
 

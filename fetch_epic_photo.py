@@ -3,15 +3,14 @@ import requests
 import urllib.parse
 import os
 from additional_func import fetch_images
+from additional_func import create_file_path
 from pathlib import Path
 
 
 def fetch_epic_photo(links, directory_name):
     for link in links:
-        file_url_path = urllib.parse.urlparse(link).path
-        _, file_name = os.path.split(file_url_path)
-        file_save_pass = Path(directory_name, file_name)
-        fetch_images(link, file_save_pass)
+        file_save_path = create_file_path(link, directory_name)
+        fetch_images(link, file_save_path)
 
 
 def get_epic_photo_links(url, headers, payload):
