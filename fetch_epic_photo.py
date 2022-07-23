@@ -33,5 +33,7 @@ if __name__ == '__main__':
     try:
         links = get_epic_photo_links(url, headers, payload)
         fetch_epic_photo(links, directory_name)
-    except(requests.HTTPError, requests.ConnectionError):
-        quit('Не удалось получить данные с сервера')
+    except requests.HTTPError as e:
+        print('Ошибка HTTP: {}'.format(e))
+    except requests.ConnectionError as e:
+        print('Ошибка подключения: {}'.format(e))

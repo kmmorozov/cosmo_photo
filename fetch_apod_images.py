@@ -38,5 +38,7 @@ if __name__ == '__main__':
     }
     try:
         fetch_apod_images(dir_name, payload, url)
-    except(requests.HTTPError, requests.ConnectionError):
-        print('Не удалось получить данные с сервера')
+    except requests.HTTPError as e:
+        print('Ошибка HTTP: {}'.format(e))
+    except requests.ConnectionError as e:
+        print('Ошибка подключения: {}'.format(e))

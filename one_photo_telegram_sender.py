@@ -30,5 +30,7 @@ if __name__ == '__main__':
     try:
         random.shuffle(file_paths)
         send_photo_to_channel(token, chat_id, file_paths[0])
-    except (telegram.error.NetworkError, telegram.error.InvalidToken):
-        print('Ошибка отправки сообщения')
+    except telegram.error.NetworkError as e:
+        print('Ошибка подключения: {}'.format(e))
+    except telegram.error.InvalidToken as e:
+        print('Вы ввели неверный токен: {}.'.format(e))

@@ -30,5 +30,7 @@ if __name__ == '__main__':
     Path(dir_name).mkdir(exist_ok=True)
     try:
         fetch_spacex_last_launch(dir_name)
-    except(requests.HTTPError, requests.ConnectionError):
-        print('Не удалось получить данные с сервера')
+    except requests.HTTPError as e:
+        print('Ошибка HTTP: {}'.format(e))
+    except requests.ConnectionError as e:
+        print('Ошибка подключения: {}'.format(e))
