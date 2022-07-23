@@ -21,7 +21,7 @@ def fetch_spacex_last_launch(dir_name):
         file_path = urllib.parse.urlparse(spaceX_image_link).path
         time_stamp = datetime.now().strftime('%Y%m%d%H%M%S')
         _, file_name = os.path.split(file_path)
-        file_name = time_stamp + file_name
+        file_name = f'{time_stamp}{file_name}'
         file_save_pass = Path(dir_name, file_name)
         fetch_images(spaceX_image_link, file_save_pass)
     return True
