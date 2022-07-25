@@ -10,8 +10,8 @@ def fetch_epic_photo(links, directory_name):
         fetch_images(link, file_save_path)
 
 
-def get_epic_photo_links(url, headers, payload):
-    response = requests.get(url, headers=headers, params=payload)
+def get_epic_photo_links(url):
+    response = requests.get(url)
     response.raise_for_status()
     photo_descriptions = response.json()
     links = []
@@ -26,12 +26,10 @@ def get_epic_photo_links(url, headers, payload):
 
 if __name__ == '__main__':
     url = "https://epic.gsfc.nasa.gov/api/natural"
-    payload = {}
-    headers = {}
     directory_name = Path('images', 'epic_images')
     Path(directory_name).mkdir(exist_ok=True, parents=True)
     try:
-        links = get_epic_photo_links(url, headers, payload)
+        links = get_epic_photo_links(url)
         fetch_epic_photo(links, directory_name)
     except requests.HTTPError as e:
         print('Ошибка HTTP: {}'.format(e))
