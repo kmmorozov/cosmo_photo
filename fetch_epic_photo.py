@@ -29,7 +29,7 @@ if __name__ == '__main__':
     payload = {}
     headers = {}
     directory_name = Path('images', 'epic_images')
-    Path(directory_name).mkdir(exist_ok=True)
+    Path(directory_name).mkdir(exist_ok=True,parents=True)
     try:
         links = get_epic_photo_links(url, headers, payload)
         fetch_epic_photo(links, directory_name)

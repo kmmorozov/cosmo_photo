@@ -27,7 +27,7 @@ if __name__ == '__main__':
     payload = {'filter': 'links,flickr_images'}
     headers = {}
     dir_name = Path('images', 'spacex_images')
-    Path(dir_name).mkdir(exist_ok=True)
+    Path(dir_name).mkdir(exist_ok=True,parents=True)
     try:
         fetch_spacex_last_launch(dir_name)
     except requests.HTTPError as e:
