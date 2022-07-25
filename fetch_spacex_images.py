@@ -11,7 +11,7 @@ def get_cli_args():
     return parser.parse_args()
 
 
-def fetch_spacex_last_launch(dir_name):
+def fetch_spacex_last_launch(dir_name, payload, headers):
     response = requests.get(url, headers=headers, data=payload)
     response.raise_for_status()
     photo_links = response.json()['links']['flickr_images']
@@ -27,9 +27,9 @@ if __name__ == '__main__':
     payload = {'filter': 'links,flickr_images'}
     headers = {}
     dir_name = Path('images', 'spacex_images')
-    Path(dir_name).mkdir(exist_ok=True,parents=True)
+    Path(dir_name).mkdir(exist_ok=True, parents=True)
     try:
-        fetch_spacex_last_launch(dir_name)
+        fetch_spacex_last_launch(dir_name, payload, headers)
     except requests.HTTPError as e:
         print('Ошибка HTTP: {}'.format(e))
     except requests.ConnectionError as e:

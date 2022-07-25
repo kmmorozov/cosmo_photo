@@ -30,7 +30,7 @@ if __name__ == '__main__':
     NASA_TOKEN = os.getenv("NASA_TOKEN")
     image_count = get_cli_args().image_count
     dir_name = Path('images', 'apod_images')
-    Path(dir_name).mkdir(exist_ok=True,parents=True)
+    Path(dir_name).mkdir(exist_ok=True, parents=True)
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
         'api_key': '{}'.format(NASA_TOKEN),
