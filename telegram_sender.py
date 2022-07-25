@@ -42,4 +42,4 @@ if __name__ == '__main__':
             except telegram.error.InvalidToken as e:
                 print('Вы ввели неверный токен: {}.'.format(e))
                 quit()
-        random.shuffle(file_path)
+        random.shuffle(file_paths)
