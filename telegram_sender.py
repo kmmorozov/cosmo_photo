@@ -9,7 +9,7 @@ from additional_func import send_photo_to_channel
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--freq", default=14400)
+    parser.add_argument("--sec", default=14400)
     parser.add_argument("--dir", default='images')
     return parser.parse_args()
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     load_dotenv()
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
-    time_out = get_args().freq
+    time_out = get_args().sec
     directory = get_args().dir
     file_paths = get_file_paths_from_directory(directory)
     while True:

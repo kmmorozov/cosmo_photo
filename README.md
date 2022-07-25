@@ -105,7 +105,7 @@ python3 one_photo_telegram_sender.py
 ```
 
 ```bash
-python3 telegram_sender.py --freq=3600 --dir=/home/user1/photo
+python3 telegram_sender.py --sec=3600 --dir=/home/user1/photo
 ``` 
 
 где `3600`  - это промежуток времени между публикациями, a `/home/user1/photo` - путь до папки с фотографиями.
